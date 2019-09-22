@@ -8,6 +8,11 @@ use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
 {
+    protected $data;
+
+    public function __construct(){
+        $this->data = new \stdClass();
+    }
     /**
      * Display a listing of the resource.
      * @return Response
@@ -21,9 +26,10 @@ class AdminController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function register()
     {
-        return view('admin::create');
+        $this->data->title = 'Register';
+        return view('admin::register')->with('data', $this->data);
     }
 
     /**
