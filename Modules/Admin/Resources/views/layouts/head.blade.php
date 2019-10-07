@@ -5,7 +5,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>@if(!empty($data->title)){{ 'Demo' }}@else {{ $data['title'] }}@endif</title>
+  <title>@if(!empty($data->title)){{ 'Demo' }}@else {{ $data->title }}@endif</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ getPublicFiles('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
