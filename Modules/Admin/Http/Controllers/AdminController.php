@@ -8,14 +8,20 @@ use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
 {
+    protected $response;
 
+    public function __construct()
+    {
+        $this->data = new stdClass();
+    }
     /**
      * Register the user
      * @return Response
      */
     public function register()
     {
-        return view('admin::admin/register');
+        $this->data->title = 'Register';
+        return view('admin::admin/register')->with('data', $this->data);
     }
 
     /**
@@ -84,6 +90,11 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $response['status'] = 'success';
+        $response['data'] = 'data';
+        $response['messages'][] = 'Success';
+        $response['errors'][] = 'failed';
+        return response()->json($response);
     }
 
     /**
