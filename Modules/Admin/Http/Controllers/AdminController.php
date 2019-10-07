@@ -21,7 +21,7 @@ class AdminController extends Controller
     public function register()
     {
         $this->data->title = 'Register';
-        return view('admin::admin/register')->with('data', $this->data);
+        return view('admin::register')->with('data', $this->data);
     }
 
     /**
