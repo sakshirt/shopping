@@ -1,5 +1,7 @@
 <?php
 
+use Nwidart\Modules\LaravelModulesServiceProvider;
+
 return [
 
     /*
@@ -39,7 +41,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
     ],
 
     /*
@@ -226,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Module' => Nwidart\Modules\Facades\Module::class,
     ],
 
 ];

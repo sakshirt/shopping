@@ -19,12 +19,12 @@ class CreateRolesTable extends Migration
             $table->string('slug');
             $table->text('description');
 
-            $table->int('created_by')->nullable();
-            $table->int('updated_by')->nullable();
-            $table->int('deleted_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
 
             $table->timestamps();
-            $table->softdelete();
+            $table->softDeletes();
         });
     }
 

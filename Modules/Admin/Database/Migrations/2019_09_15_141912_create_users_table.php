@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -29,12 +29,12 @@ class CreateUsersTable extends Migration
 
             $table->text('meta')->nullable();
 
-            $table->int('created_by')->nullable();
-            $table->int('updated_by')->nullable();
-            $table->int('deleted_by')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
 
             $table->timestamps();
-            $table->softdelete();
+            $table->softDeletes();
         });
     }
 

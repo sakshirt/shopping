@@ -47,9 +47,21 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
+//        Route::middleware('web')
+//            ->namespace($this->namespace)
+//            ->group(__DIR__ . '/../Routes/web.php');
+
         Route::middleware('web')
             ->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/web.php');
+            ->group(function () {
+                require __DIR__ . '/../Routes/web.php';
+
+                // Load custom route overrides
+//                $routesFile = base_path('Modules/Admin/Routes/web.php');
+//                if (file_exists($routesFile)) {
+//                    require $routesFile;
+//                }
+            });
     }
 
     /**

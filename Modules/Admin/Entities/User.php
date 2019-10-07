@@ -2,8 +2,10 @@
 
 namespace Modules\Admin\Entities;
 
+use Cake\Network\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Admin\Entities\Role;
 
 class User extends Model
 {
@@ -29,5 +31,14 @@ class User extends Model
         'deleted_by'
     ];
     //--------------------------------------
+    //------------ Store User --------------
+    //--------------------------------------
+    public function storeUser(Request $request){
+        $roles = Role::where('');
+    }
 
 }
+
+$request = ['email' => 'sakshi@email.com', 'first_name' => 'Sakshi', 'enable' => 1];
+$user = new User();
+$user->storeUser($request);

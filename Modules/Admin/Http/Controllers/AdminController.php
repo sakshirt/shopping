@@ -8,11 +8,25 @@ use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
 {
-    protected $data;
 
-    public function __construct(){
-        $this->data = new \stdClass();
+    /**
+     * Register the user
+     * @return Response
+     */
+    public function register()
+    {
+        return view('admin::admin/register');
     }
+
+    /**
+     * Register the user
+     * @return Response
+     */
+    public function login()
+    {
+        return view('admin::admin/login');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -26,10 +40,9 @@ class AdminController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function register()
+    public function create()
     {
-        $this->data->title = 'Register';
-        return view('admin::register')->with('data', $this->data);
+        return view('admin::create');
     }
 
     /**
@@ -39,7 +52,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('admin::store');
     }
 
     /**
@@ -49,7 +62,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        return view('admin::show');
+        //
     }
 
     /**
