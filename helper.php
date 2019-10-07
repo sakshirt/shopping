@@ -6,4 +6,5 @@ function getPublicFiles($file){
     $path = '/public/'.$file;
     return URL::to($path);
 }
+//-----------------------------------------
 ?>

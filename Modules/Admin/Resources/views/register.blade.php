@@ -1,5 +1,7 @@
 @extends('admin::layouts.master')
-
+@section('page_specific_scripts')
+    <script src="{{ getPublicFiles('js/modules/admin/register.js') }}"
+@endsection
 @section('content')
 <div class="container">
 
