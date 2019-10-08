@@ -1,6 +1,3 @@
-Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-
-Vue.config.async = false;
 
 
 var Extendable = Vue.extend({
@@ -22,7 +19,6 @@ var Extendable = Vue.extend({
                         {
                             this.messages(response.data.messages);
                         }
-
 
                         if(response.data.warnings)
                         {

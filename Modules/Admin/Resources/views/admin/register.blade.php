@@ -39,24 +39,24 @@
                             <form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" v-model="first_name" class="form-control form-control-user" id="first_name" placeholder="First Name">
+                                        <input type="text" v-model="users.first_name" class="form-control form-control-user" id="first_name" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" v-model="last_name" class="form-control form-control-user" id="last_name" placeholder="Last Name">
+                                        <input type="text" v-model="users.last_name" class="form-control form-control-user" id="last_name" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" v-model="email" class="form-control form-control-user" id="email" placeholder="Email Address">
+                                    <input type="email" v-model="users.email" class="form-control form-control-user" id="email" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" v-model="password" class="form-control form-control-user" id="password" placeholder="Password">
+                                        <input type="password" v-model="users.password" class="form-control form-control-user" id="password" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" v-model="confirm_password" class="form-control form-control-user" id="confirm_password" placeholder="Confirm Password">
+                                        <input type="password" v-model="users.confirm_password" class="form-control form-control-user" id="confirm_password" placeholder="Confirm Password">
                                     </div>
                                 </div>
-                                <button v-on:click="register" class="btn btn-primary btn-user btn-block">
+                                <button v-on:click="storeRegister($event)" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
                                 <hr>
@@ -93,8 +93,9 @@
 <!-- Custom scripts for all pages-->
 <script src="{{ getPublicFiles('js/sb-admin-2.min.js') }}"></script>
 
+<!-- Vue.js script for register page-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="{{ getPublicFiles('js/admin/admin.js') }}"></script>
+<script src="{{ getPublicFiles('js/admin/register.js') }}"></script>
 
 </body>
 

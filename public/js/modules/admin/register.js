@@ -12,40 +12,38 @@ const app = new Extendable({
         total_page : null,
         per_page : null,
         //end pagination
+
+        // user data
+        users : {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+            confirm_password: '',
+        }
     },
     //----------------------------------------------
     mounted : {
-        this.url.current = window.location.href;
+        // this.url.current = window.location.href;
     },
     //----------------------------------------------
     methods : {
         //define your methods here
-        samplePostMethod : function(event){
+        storeRegister : function(event){
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/urlslug";
-            //url = url+"?page="+this.current_page;    //for pagination
+            var url = this.url.current+"/register/store/user";
+
             var params = {
                 //pass parameters with request
             },
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.samplePostMethodAfter);
+            this.processApiRequest(url, params, this.storeRegisterAfter);
         },
 
-        samplePostMethodAfter : function(data){
+        storeRegisterAfter : function(data){
             this.list = data;
-
-            //if pagiantion
-
-            this.lsit = data.data;
-            this.current_page = data.current_page;
-            this.total_page = data.total_page;
-            this.per_page = data.per_page;
-
-            this.makePagination(data);
-
-            //end paginatoion
 
             this.stopProgressBar();
         },

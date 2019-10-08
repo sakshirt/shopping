@@ -20,6 +20,6 @@ Route::prefix('admin')->group(function() {
 //    Route::get('/', 'AdminController@index');
 
     Route::get('/register', 'AdminController@register');
-    Route::get('/register/store', 'User@storeRegister');
+    Route::get('/register/store/user', 'User@storeUser');
 
 });
