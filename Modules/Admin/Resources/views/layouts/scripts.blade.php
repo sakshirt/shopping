@@ -17,4 +17,5 @@
 <!-- Vue pagination JS-->
 <script src="{{ getPublicFiles('js/common/VuePagination.js') }}"></script>
 
+<script src="{{ getPublicFiles('js/common/Extendable.js') }}"></script>
 @yield('page_specific_scripts')

@@ -24,12 +24,13 @@ const app = new Extendable({
     },
     //----------------------------------------------
     mounted : {
+
         // this.url.current = window.location.href;
     },
     //----------------------------------------------
     methods : {
         //define your methods here
-        storeRegister : function(event){
+        registerUser : function(event){
             if(event){
                 event.preventDefault();
             }
@@ -37,12 +38,12 @@ const app = new Extendable({
 
             var params = {
                 //pass parameters with request
-            },
+            };
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.storeRegisterAfter);
+            this.processApiRequest(url, params, this.registerUserAfter);
         },
 
-        storeRegisterAfter : function(data){
+        registerUserAfter : function(data){
             this.list = data;
 
             this.stopProgressBar();

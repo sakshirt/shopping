@@ -35,7 +35,8 @@
                     <input type="password" v-model="users.confirm_password" class="form-control form-control-user" id="confirm_password" placeholder="Repeat Password">
                 </div>
                 </div>
-                <button @click="storeRegister($event)" class="btn btn-primary btn-user btn-block">
+                <button v-on:click="registerUser($event)" class="btn btn-primary btn-user btn-block">
+{{--                <button v-on:click="console.log('hey')" class="btn btn-primary btn-user btn-block">--}}
                 Register Account
                 </button>
                 <hr>
