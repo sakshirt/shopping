@@ -18,10 +18,31 @@ class AdminController extends Controller
      * Register the user
      * @return Response
      */
-    public function userRegister()
+    public function register()
     {
         $this->data->title = 'Register';
         return view('admin::register')->with('data', $this->data);
+    }
+
+    public function userStore(Request $request)
+    {
+        $rules = [
+            'email' => 'email|required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'password' => 'required|confirmed'
+        ];
+        $msgs = [
+            'email.email' => 'Email should be valid email.',
+        ];
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $response['status'] = 'failed';
+            $response['errors'] = $validator->errors();
+            //to do
+            return response()->json($response);
+        }
     }
 
     /**

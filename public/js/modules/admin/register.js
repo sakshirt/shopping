@@ -34,7 +34,7 @@ const app = new Extendable({
                 event.preventDefault();
             }
             var url = this.url.current+"/store";
-            
+
             var params = {
                 //pass parameters with request
                 first_name: this.users.first_name,
@@ -44,7 +44,7 @@ const app = new Extendable({
                 confirm_password: this.users.confirm_password
             };
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.registerUserAfter, true);
+            this.processApiRequest(url, params, this.registerUserAfter, false);
         },
 
         registerUserAfter : function(data){

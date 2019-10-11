@@ -11,7 +11,7 @@
 |
 */
 
-Route::prefix('user')->group(function() {
+Route::prefix('admin')->group(function() {
 
     //---------------------------------------------
     //    Route::get('/', 'AdminController@register');
@@ -19,7 +19,7 @@ Route::prefix('user')->group(function() {
 
     //    Route::get('/', 'AdminController@index');
 
-    Route::get('/register', 'AdminController@userRegister');
-    Route::get('/register/store', 'User@userStore');
+    Route::get('/register', 'AdminController@register');
+    Route::post('/register/store', 'AdminController@userStore');
 
 });
