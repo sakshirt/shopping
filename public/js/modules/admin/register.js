@@ -23,9 +23,8 @@ const app = new Extendable({
         }
     },
     //----------------------------------------------
-    mounted : {
-
-        // this.url.current = window.location.href;
+    mounted : function(){
+        this.url.current = window.location.href
     },
     //----------------------------------------------
     methods : {
@@ -34,18 +33,23 @@ const app = new Extendable({
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/register/store/user";
-
+            var url = this.url.current+"/store";
+            
             var params = {
                 //pass parameters with request
+                first_name: this.users.first_name,
+                last_name: this.users.last_name,
+                email: this.users.email,
+                password: this.users.password,
+                confirm_password: this.users.confirm_password
             };
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.registerUserAfter);
+            this.processApiRequest(url, params, this.registerUserAfter, true);
         },
 
         registerUserAfter : function(data){
             this.list = data;
-
+            console.log('also working');
             this.stopProgressBar();
         },
     },

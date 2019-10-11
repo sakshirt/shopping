@@ -33,8 +33,9 @@ class User extends Model
     //--------------------------------------
     //------------ Store User --------------
     //--------------------------------------
-    public function storeUser(Request $request){
-        $roles = Role::where('');
+    public function userStore(Request $request){
+//        $roles = Role::where('');
+
     }
 
 }

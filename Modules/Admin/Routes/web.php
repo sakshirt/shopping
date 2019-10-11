@@ -11,15 +11,15 @@
 |
 */
 
-Route::prefix('admin')->group(function() {
+Route::prefix('user')->group(function() {
 
     //---------------------------------------------
-//    Route::get('/', 'AdminController@register');
+    //    Route::get('/', 'AdminController@register');
     //----------------------------------------------
 
-//    Route::get('/', 'AdminController@index');
+    //    Route::get('/', 'AdminController@index');
 
-    Route::get('/register', 'AdminController@register');
-    Route::get('/register/store/user', 'User@storeUser');
+    Route::get('/register', 'AdminController@userRegister');
+    Route::get('/register/store', 'User@userStore');
 
 });

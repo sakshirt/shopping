@@ -18,7 +18,7 @@ class AdminController extends Controller
      * Register the user
      * @return Response
      */
-    public function register()
+    public function userRegister()
     {
         $this->data->title = 'Register';
         return view('admin::register')->with('data', $this->data);
