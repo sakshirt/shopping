@@ -10,7 +10,7 @@ use Modules\Admin\Entities\Role;
 class User extends Model
 {
     //--------------------------------------
-    use SoftDelete;
+    use SoftDeletes;
     //--------------------------------------
     protected $fillable = [
         'name',
@@ -35,11 +35,10 @@ class User extends Model
     //--------------------------------------
     public function userStore(Request $request){
 //        $roles = Role::where('');
-
+        echo 'y';
     }
-
 }
 
-$request = ['email' => 'sakshi@email.com', 'first_name' => 'Sakshi', 'enable' => 1];
-$user = new User();
-$user->storeUser($request);
+//$request = ['email' => 'sakshi@email.com', 'first_name' => 'Sakshi', 'enable' => 1];
+//$user = new User();
+//$user->storeUser($request);

@@ -1,5 +1,5 @@
 <?php
-
+//use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +20,10 @@ Route::prefix('admin')->group(function() {
     //    Route::get('/', 'AdminController@index');
 
     Route::get('/register', 'AdminController@register');
-    Route::post('/register/store', 'AdminController@userStore');
 
+    Route::post('/register/store', 'AdminController@userStore');
+//    Route::post('/register/store', function() {
+//        $user = $request->all();
+//        User::storeRegister();
+//    });
 });

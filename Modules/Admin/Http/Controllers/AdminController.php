@@ -18,12 +18,32 @@ class AdminController extends Controller
      * Register the user
      * @return Response
      */
+
+    //************* Associative array to single *******//
+    public function array_values_recursive($array)  {
+        $array = (array) $array;
+        $new = array();
+
+        foreach( $array as $key => $value ) {
+
+            if (is_scalar($value)) {
+                $new[] = $value;
+            }
+            elseif (is_array($value)) {
+                $new = array_merge($new,$this->array_values_recursive($value));
+            }
+        }
+        return $new;
+    }
+
+    //************* Register ******************//
     public function register()
     {
         $this->data->title = 'Register';
         return view('admin::register')->with('data', $this->data);
     }
 
+    //************* Store a user **************//
     public function userStore(Request $request)
     {
         $rules = [
@@ -36,14 +56,18 @@ class AdminController extends Controller
             'email.email' => 'Email should be valid email.',
         ];
         $validator = \Validator::make($request->all(), $rules);
-
         if ($validator->fails()) {
             $response['status'] = 'failed';
             $response['errors'] = $validator->errors();
             //to do
+            // $response['errors'] = array_values($response['errors']);
+
+            $response['errors'] = $this->array_values_recursive($response['errors']);
+
             return response()->json($response);
         }
     }
+
 
     /**
      * Register the user
