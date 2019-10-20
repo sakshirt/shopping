@@ -14,7 +14,7 @@ const app = new Extendable({
         //end pagination
 
         // user data
-        users : {
+        user : {
             first_name: '',
             last_name: '',
             email: '',
@@ -35,22 +35,16 @@ const app = new Extendable({
             }
             var url = this.url.current+"/store";
 
-            var params = {
-                //pass parameters with request
-                first_name: this.users.first_name,
-                last_name: this.users.last_name,
-                email: this.users.email,
-                password: this.users.password,
-                confirm_password: this.users.confirm_password
-            };
+            var params = this.user;
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.registerUserAfter, false);
+            this.processApiRequest(url, params, this.registerUserAfter);
         },
 
         registerUserAfter : function(data){
-            this.list = data;
-            console.log('also working');
             this.stopProgressBar();
+            if (data.redirect_url) {
+                window.location = data.redirect_url;
+            }
         },
     },
     //----------------------------------------------

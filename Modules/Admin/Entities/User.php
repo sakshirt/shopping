@@ -2,12 +2,14 @@
 
 namespace Modules\Admin\Entities;
 
-use Cake\Network\Request;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Admin\Entities\Role;
+use Illuminate\Support\Facades\Auth;
 
-class User extends Model
+class User extends Authenticatable
 {
     //--------------------------------------
     use SoftDeletes;
@@ -15,9 +17,9 @@ class User extends Model
     protected $fillable = [
         'name',
         'email',
-        'firstname',
+        'first_name',
         'password',
-        'lastname',
+        'last_name',
         'mobile',
         'thumbnail',
         'gender',
@@ -31,14 +33,31 @@ class User extends Model
         'deleted_by'
     ];
     //--------------------------------------
+    public function roles()
+    {
+        return $this->belongsToMany(
+            '\Modules\Admin\Entities\Role',
+            'user_roles', 'user_id', 'role_id'
+        );
+    }
     //------------ Store User --------------
     //--------------------------------------
-    public function userStore(Request $request){
-//        $roles = Role::where('');
-        echo 'y';
+    public static function store(Request $request){
+        $user = User::where('email', $request->email)->first();
+        $response = [];
+        if ($user) {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Email already exists';
+        }
+
+        $user = new User();
+        $user->fill($request->all());
+        $user->password = \Hash::make($request->password);
+        $user->save();
+
+        $response['status'] = 'success';
+        $response['data'] = $user;
+        $response['messages'][] = 'User registered successfully';
+        return $response;
     }
 }
-
-//$request = ['email' => 'sakshi@email.com', 'first_name' => 'Sakshi', 'enable' => 1];
-//$user = new User();
-//$user->storeUser($request);

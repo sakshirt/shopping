@@ -17,5 +17,11 @@
 <!-- Vue pagination JS-->
 <script src="{{ getPublicFiles('js/common/VuePagination.js') }}"></script>
 
+<!-- alertify -->
+<script src="{{ getPublicFiles('js/common/alertify.min.js') }}"></script>
+
+<!-- NProgress -->
+<script src="{{ getPublicFiles('js/common/nprogress.min.js') }}"></script>
+
 <script src="{{ getPublicFiles('js/common/Extendable.js') }}"></script>
 @yield('page_specific_scripts')

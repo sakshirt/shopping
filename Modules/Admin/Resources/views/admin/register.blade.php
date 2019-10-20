@@ -39,21 +39,21 @@
                             <form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" v-model="users.first_name" class="form-control form-control-user" id="first_name" placeholder="First Name">
+                                        <input type="text" v-model="user.first_name" class="form-control form-control-user" id="first_name" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" v-model="users.last_name" class="form-control form-control-user" id="last_name" placeholder="Last Name">
+                                        <input type="text" v-model="user.last_name" class="form-control form-control-user" id="last_name" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" v-model="users.email" class="form-control form-control-user" id="email" placeholder="Email Address">
+                                    <input type="email" v-model="user.email" class="form-control form-control-user" id="email" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" v-model="users.password" class="form-control form-control-user" id="password" placeholder="Password">
+                                        <input type="password" v-model="user.password" class="form-control form-control-user" id="password" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" v-model="users.confirm_password" class="form-control form-control-user" id="confirm_password" placeholder="Confirm Password">
+                                        <input type="password" v-model="user.password_confirmation" class="form-control form-control-user" id="confirm_password" placeholder="Confirm Password">
                                     </div>
                                 </div>
                                 <button v-on:click="storeRegister($event)" class="btn btn-primary btn-user btn-block">

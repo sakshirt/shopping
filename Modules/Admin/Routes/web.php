@@ -11,7 +11,9 @@
 |
 */
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')
+    ->middleware(['web'])
+    ->group(function() {
 
     //---------------------------------------------
     //    Route::get('/', 'AdminController@register');
@@ -19,7 +21,8 @@ Route::prefix('admin')->group(function() {
 
     //    Route::get('/', 'AdminController@index');
 
-    Route::get('/register', 'AdminController@register');
+    Route::get('/register', 'AdminController@register')->name('admin.register');
+    Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
     Route::post('/register/store', 'AdminController@userStore');
 //    Route::post('/register/store', function() {

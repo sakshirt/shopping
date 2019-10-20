@@ -5,6 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use \Modules\Admin\Entities\User;
+use \Modules\Admin\Entities\Role;
 
 class AdminController extends Controller
 {
@@ -20,20 +22,18 @@ class AdminController extends Controller
      */
 
     //************* Associative array to single *******//
-    public function array_values_recursive($array)  {
-        $array = (array) $array;
-        $new = array();
-
-        foreach( $array as $key => $value ) {
-
-            if (is_scalar($value)) {
-                $new[] = $value;
-            }
-            elseif (is_array($value)) {
-                $new = array_merge($new,$this->array_values_recursive($value));
+    public function getErrors($errors)  {
+        $result = array();
+        if (count($errors)>0) {
+            foreach ($errors as $value) {
+                if ($value && is_array($value)) {
+                    $result = array_merge($value, $result);
+                }else{
+                    array_push($result, $value);
+                }
             }
         }
-        return $new;
+        return $result;
     }
 
     //************* Register ******************//
@@ -43,7 +43,23 @@ class AdminController extends Controller
         return view('admin::register')->with('data', $this->data);
     }
 
-    //************* Store a user **************//
+    /**
+     * dashboard
+     *
+     * @return void
+     */
+    public function dashboard()
+    {
+        print_r("dashboard");die;
+    }
+
+    /**
+     * userStore
+     *
+     * @param  Request $request
+     *
+     * @return Response
+     */
     public function userStore(Request $request)
     {
         $rules = [
@@ -58,14 +74,32 @@ class AdminController extends Controller
         $validator = \Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             $response['status'] = 'failed';
-            $response['errors'] = $validator->errors();
-            //to do
-            // $response['errors'] = array_values($response['errors']);
-
-            $response['errors'] = $this->array_values_recursive($response['errors']);
+            $response['errors'] = $this->getErrors($validator->errors()->toArray());
 
             return response()->json($response);
         }
+
+        $registerResponse = User::store($request);
+        if (!$registerResponse || empty($registerResponse)) {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Something went wrong';
+            return response()->json($registerResponse);
+        }
+        if ($registerResponse['status'] === 'failed') {
+            return response()->json($registerResponse);
+        }
+
+        $user = $registerResponse['data'];
+        $role = Role::getRoleIdUsingSlug('admin');
+        // $userRole = $user->role()->where('role_id', $role)->first();
+
+        $user->roles()->sync([$role]);
+
+        \Auth::login($user, true);
+        $response['status'] = 'success';
+        $response['messages'][] = 'User Stored Successfully';
+        $response['data']['redirect_url'] = route('admin.dashboard');
+        return response()->json($response);
     }
 
 
