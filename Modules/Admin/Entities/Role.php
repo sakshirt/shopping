@@ -20,6 +20,13 @@ class Role extends Model
         );
     }
 
+    /**
+     * getRoleIdUsingSlug
+     *
+     * @param  string $slug
+     *
+     * @return int
+     */
     public static function getRoleIdUsingSlug(string $slug): int
     {
         $role = Role::where('slug', $slug)->first();

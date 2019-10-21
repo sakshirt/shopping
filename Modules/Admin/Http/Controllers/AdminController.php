@@ -16,13 +16,16 @@ class AdminController extends Controller
     {
         $this->data = new \stdClass();
     }
-    /**
-     * Register the user
-     * @return Response
-     */
 
-    //************* Associative array to single *******//
-    public function getErrors($errors)  {
+    /**
+     * Get Errors
+     *
+     * @param  array $errors
+     *
+     * @return array
+     */
+    public function getErrors(array $errors) : array
+    {
         $result = array();
         if (count($errors)>0) {
             foreach ($errors as $value) {
@@ -36,7 +39,12 @@ class AdminController extends Controller
         return $result;
     }
 
-    //************* Register ******************//
+
+    /**
+     * register
+     *
+     * @return view
+     */
     public function register()
     {
         $this->data->title = 'Register';
@@ -93,7 +101,7 @@ class AdminController extends Controller
 
         $role = Role::getRoleIdUsingSlug('admin');
 
-        $userRole = (new \Modules\Admin\Entities\User)->roles()->where('role_id', $role)->first();
+        $userRole = $user->roles()->where('role_id', $role)->first();
 
         $user->roles()->sync([$role]);
 
