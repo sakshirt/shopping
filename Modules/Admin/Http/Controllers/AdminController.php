@@ -90,8 +90,10 @@ class AdminController extends Controller
         }
 
         $user = $registerResponse['data'];
+
         $role = Role::getRoleIdUsingSlug('admin');
-        // $userRole = $user->role()->where('role_id', $role)->first();
+
+        $userRole = (new \Modules\Admin\Entities\User)->roles()->where('role_id', $role)->first();
 
         $user->roles()->sync([$role]);
 

@@ -20,13 +20,14 @@ class Role extends Model
         );
     }
 
-    public static function getRoleIdUsingSlug(string $role) : int
+    public static function getRoleIdUsingSlug(string $slug): int
     {
-        $role = Role::where('slug', $role)->first();
+        $role = Role::where('slug', $slug)->first();
+
         if (!$role) {
             $role = new Role();
-            $role->name = ucwords($role);
-            $role->slug = $role;
+            $role->name = ucwords($slug);
+            $role->slug = strval($slug);
             $role->save();
         }
         return $role->id;
