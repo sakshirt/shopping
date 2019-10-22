@@ -40,6 +40,7 @@ class User extends Authenticatable
             'user_roles', 'user_id', 'role_id'
         );
     }
+    //--------------------------------------
     //------------ Store User --------------
     //--------------------------------------
     public static function store(Request $request){
@@ -58,6 +59,30 @@ class User extends Authenticatable
         $response['status'] = 'success';
         $response['data'] = $user;
         $response['messages'][] = 'User registered successfully';
+        return $response;
+    }
+    //--------------------------------------
+    //------------ Authenticate ------------
+    //--------------------------------------
+    public static function authenticate(Request $request){
+        $user = User::where('email', $request->email)->first();
+        $response = [];
+        if (! $user)
+        {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Email not found';
+        }
+
+        if(\Hash::make($request->password != $user->password))
+        {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Password is incorrect';
+        }
+
+        $response['status'] = 'success';
+        $response['data'] = $user;
+        $response['redirect_url'] = 'admin.dashboard';
+        $response['messages'][] = 'User logged in successfully';
         return $response;
     }
 }

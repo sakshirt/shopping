@@ -15,18 +15,15 @@ Route::prefix('admin')
     ->middleware(['web'])
     ->group(function() {
 
-    //---------------------------------------------
-    //    Route::get('/', 'AdminController@register');
-    //----------------------------------------------
-
-    //    Route::get('/', 'AdminController@index');
-
-    Route::get('/register', 'AdminController@register')->name('admin.register');
+    /************************** Dashboard *************************/
     Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
+    /*************************** Register *************************/
+    Route::get('/register', 'AdminController@register')->name('admin.register');
+
     Route::any('/register/store', 'AdminController@userStore');
-//    Route::post('/register/store', function() {
-//        $user = $request->all();
-//        User::storeRegister();
-//    });
+
+    /**************************** Login ***************************/
+    Route::get('/login', 'AdminController@login')->name('admin.login');
+    Route::any('/login/authenticate', 'AdminController@authenticate')->name('admin.authenticate');
 });

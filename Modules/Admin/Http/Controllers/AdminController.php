@@ -39,6 +39,7 @@ class AdminController extends Controller
         return $result;
     }
 
+    /****************** REGISTER **************************/
 
     /**
      * register
@@ -49,17 +50,6 @@ class AdminController extends Controller
     {
         $this->data->title = 'Register';
         return view('admin::register')->with('data', $this->data);
-    }
-
-    /**
-     * dashboard
-     *
-     * @return void
-     */
-    public function dashboard()
-    {
-        $this->data->title = 'Dashboard';
-        return view('admin::dashboard')->with('data', $this->data);
     }
 
     /**
@@ -113,15 +103,55 @@ class AdminController extends Controller
         return response()->json($response);
     }
 
+    /********************** LOGIN ****************************/
 
     /**
-     * Register the user
-     * @return Response
+     * login
+     *
+     * @return void
      */
     public function login()
     {
         $this->data->title = 'Login';
         return view('admin::login')->with('data', $this->data);
+    }
+
+    public function authenticate(Request $request){
+
+        $user = User::where('email', $request->email)->first();
+        $response = [];
+
+        if (! $user)
+        {
+            echo 'yo';
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Email not found';
+        }
+
+        elseif (\Hash::make($request->password == $user->password))
+        {
+            $response['status'] = 'success';
+            $response['data'] = $user;
+            $response['redirect_url'] = 'admin.dashboard';
+            $response['messages'][] = 'User logged in successfully';
+        }
+
+        $response['status'] = 'failed';
+        $response['errors'][] = 'Password is incorrect';
+            return $response;
+    }
+
+    /********************** DASHBOARD **************************/
+
+    /**
+     * dashboard
+     *
+     * @return void
+     */
+    public function dashboard()
+    {
+        $this->data->title = 'Dashboard';
+        return view('admin::dashboard')->with('data', $this->data);
     }
 
     /**
