@@ -24,7 +24,7 @@ Route::prefix('admin')
     Route::get('/register', 'AdminController@register')->name('admin.register');
     Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
-    Route::post('/register/store', 'AdminController@userStore');
+    Route::any('/register/store', 'AdminController@userStore');
 //    Route::post('/register/store', function() {
 //        $user = $request->all();
 //        User::storeRegister();

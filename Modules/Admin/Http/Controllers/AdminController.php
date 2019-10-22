@@ -58,7 +58,8 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        print_r("dashboard");die;
+        $this->data->title = 'Dashboard';
+        return view('admin::dashboard')->with('data', $this->data);
     }
 
     /**

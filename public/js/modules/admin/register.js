@@ -19,7 +19,7 @@ const app = new Extendable({
             last_name: '',
             email: '',
             password: '',
-            confirm_password: '',
+            password_confirmation: '',
         }
     },
     //----------------------------------------------
@@ -30,6 +30,7 @@ const app = new Extendable({
     methods : {
         //define your methods here
         registerUser : function(event){
+            console.log('hey');
             if(event){
                 event.preventDefault();
             }
