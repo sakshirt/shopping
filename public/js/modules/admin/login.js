@@ -30,7 +30,7 @@ const app = new Extendable({
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/authenticate";
+            var url = this.url.current+"/auth";
 
             var params = this.user;
             //url, parameters, callback method

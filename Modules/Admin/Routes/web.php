@@ -29,6 +29,6 @@ Route::prefix('admin')->middleware(['web'])->group(function()
 
     /**************************** Login ***************************/
     Route::get('/login', 'AdminController@login')->name('admin.login');
-    Route::any('/login/authenticate', 'AdminController@authenticate')->name('admin.authenticate');
+    Route::any('/login/auth', 'AdminController@authenticate')->name('admin.authenticate');
 });
 

@@ -18,7 +18,13 @@ class AdminController extends Controller
         $this->data = new \stdClass();
     }
 
-    /************************ ERRORS ***************************/
+    /**
+     * getErrors
+     *
+     * @param  array $errors
+     *
+     * @return array
+     */
     public function getErrors(array $errors) : array
     {
         $result = array();
@@ -33,8 +39,6 @@ class AdminController extends Controller
         }
         return $result;
     }
-
-    /****************** REGISTER **************************/
 
     /**
      * register
