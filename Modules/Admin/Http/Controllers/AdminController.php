@@ -141,19 +141,6 @@ class AdminController extends Controller
             return $response;
     }
 
-    /********************** DASHBOARD **************************/
-
-    /**
-     * dashboard
-     *
-     * @return void
-     */
-    public function dashboard()
-    {
-        $this->data->title = 'Dashboard';
-        return view('admin::dashboard')->with('data', $this->data);
-    }
-
     /**
      * Display a listing of the resource.
      * @return Response

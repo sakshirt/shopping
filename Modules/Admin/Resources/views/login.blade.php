@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+ @extends('admin::layouts.master')
 @section('page_specific_scripts')
     <script src="{{ getPublicFiles('js/modules/admin/login.js') }}"></script>
 @endsection

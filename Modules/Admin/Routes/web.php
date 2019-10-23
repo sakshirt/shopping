@@ -11,13 +11,17 @@
 |
 */
 
-Route::prefix('admin')
-    ->middleware(['web'])
-    ->group(function() {
+Route::prefix('admin')->middleware(['web'])->group(function()
+{
+    /**************************** Dashboard ***************************/
+    Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+});
 
-    /************************** Dashboard *************************/
-    Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
+
+
+Route::prefix('admin')->middleware(['web'])->group(function()
+{
     /*************************** Register *************************/
     Route::get('/register', 'AdminController@register')->name('admin.register');
 
@@ -27,3 +31,4 @@ Route::prefix('admin')
     Route::get('/login', 'AdminController@login')->name('admin.login');
     Route::any('/login/authenticate', 'AdminController@authenticate')->name('admin.authenticate');
 });
+
