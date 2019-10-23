@@ -30,7 +30,6 @@ const app = new Extendable({
     methods : {
         //define your methods here
         registerUser : function(event){
-            console.log('hey');
             if(event){
                 event.preventDefault();
             }

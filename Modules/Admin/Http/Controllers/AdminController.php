@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use \Modules\Admin\Entities\User;
 use \Modules\Admin\Entities\Role;
 
@@ -17,13 +18,7 @@ class AdminController extends Controller
         $this->data = new \stdClass();
     }
 
-    /**
-     * Get Errors
-     *
-     * @param  array $errors
-     *
-     * @return array
-     */
+    /************************ ERRORS ***************************/
     public function getErrors(array $errors) : array
     {
         $result = array();
@@ -105,40 +100,54 @@ class AdminController extends Controller
 
     /********************** LOGIN ****************************/
 
-    /**
-     * login
-     *
-     * @return void
-     */
     public function login()
     {
         $this->data->title = 'Login';
         return view('admin::login')->with('data', $this->data);
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
+        $rules = [
+            'email' => 'email|required',
+            'password' => 'required'
+        ];
+        $msgs = [
+            'email.email' => 'Email should be valid email.',
+        ];
+
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $response['status'] = 'failed';
+            $response['errors'] = $this->getErrors($validator->errors()->toArray());
+
+            return response()->json($response);
+        }
 
         $user = User::where('email', $request->email)->first();
         $response = [];
-
-        if (! $user)
+        if (!$user || empty($user))
         {
-            echo 'yo';
             $response['status'] = 'failed';
             $response['errors'][] = 'Email not found';
+            return response()->json($response);
         }
 
-        elseif (\Hash::make($request->password == $user->password))
-        {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            \Auth::login($user, true);
+
             $response['status'] = 'success';
-            $response['data'] = $user;
-            $response['redirect_url'] = 'admin.dashboard';
+//            $response['data'] = $credentials;
+            $response['data']['redirect_url'] = route('admin.dashboard');
             $response['messages'][] = 'User logged in successfully';
+            return response()->json($response);
         }
 
         $response['status'] = 'failed';
         $response['errors'][] = 'Password is incorrect';
-            return $response;
+        return response()->json($response);
     }
 
     /**

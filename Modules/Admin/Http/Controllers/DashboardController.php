@@ -15,6 +15,22 @@ class DashboardController extends Controller
         $this->data = new \stdClass();
     }
 
+    /************************ ERRORS ***************************/
+    public function getErrors(array $errors) : array
+    {
+        $result = array();
+        if (count($errors)>0) {
+            foreach ($errors as $value) {
+                if ($value && is_array($value)) {
+                    $result = array_merge($value, $result);
+                }else{
+                    array_push($result, $value);
+                }
+            }
+        }
+        return $result;
+    }
+
     /********************** DASHBOARD **************************/
 
     /**
