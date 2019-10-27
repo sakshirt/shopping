@@ -19,6 +19,9 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        /* Admin Middleware */
+        \Modules\Admin\Http\Middleware\AdminAuthMiddleware::class,
+        \Modules\Admin\Http\Middleware\AdminMiddleware::class,
     ];
 
     /**
@@ -60,6 +63,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        /* Admin Middleware */
+        'admin.auth' => \Modules\Admin\Http\Middleware\AdminAuthMiddleware::class,
+        'admin' => \Modules\Admin\Http\Middleware\AdminMiddleware::class,
     ];
 
     /**

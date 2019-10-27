@@ -4,6 +4,8 @@ namespace Modules\Admin\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Modules\Admin\Entities\Role;
 
 class AdminMiddleware
@@ -15,12 +17,17 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        
-//        if () {
-//            return redirect('');
+//        if(!Auth::check()){
+//            return redirect('/');
 //        }
+
+        if(!Auth::user()){
+////            echo 'dashboard';
+////            die();
+            return redirect('admin.dashboard');
+        }
 
         return $next($request);
     }
