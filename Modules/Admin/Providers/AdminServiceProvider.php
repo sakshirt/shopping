@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -19,12 +20,18 @@ class AdminServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
+        $router->middleware(
+		    'admin.auth', \Modules\Admin\Http\Middleware\AdminAuthMiddleware::class
+        );
+        $router->middleware(
+		    'admin', \Modules\Admin\Http\Middleware\AdminMiddleware::class
+	    );
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
@@ -91,7 +98,7 @@ class AdminServiceProvider extends ServiceProvider
 
     /**
      * Register an additional directory of factories.
-     * 
+     *
      * @return void
      */
     public function registerFactories()

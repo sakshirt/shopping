@@ -19,16 +19,6 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-//        if(!Auth::check()){
-//            return redirect('/');
-//        }
-
-        if(!Auth::user()){
-////            echo 'dashboard';
-////            die();
-            return redirect('admin.dashboard');
-        }
-
         return $next($request);
     }
 }
