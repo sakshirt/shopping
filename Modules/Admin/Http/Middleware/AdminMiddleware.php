@@ -19,6 +19,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if (!\Auth::user()) {
+            return redirect()->route('admin.login');
+        }
+
+        //check roles and permission
         return $next($request);
     }
 }

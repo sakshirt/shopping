@@ -26,12 +26,12 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $router->middleware(
-		    'admin.auth', \Modules\Admin\Http\Middleware\AdminAuthMiddleware::class
+        $router->middlewareGroup(
+            'admin.auth', [\Modules\Admin\Http\Middleware\AdminAuthMiddleware::class]
         );
-        $router->middleware(
-		    'admin', \Modules\Admin\Http\Middleware\AdminMiddleware::class
-	    );
+        $router->middlewareGroup(
+            'admin', [\Modules\Admin\Http\Middleware\AdminMiddleware::class]
+        );
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 

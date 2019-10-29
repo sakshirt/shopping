@@ -11,19 +11,26 @@
 |
 */
 
-Route::prefix('admin')->middleware(['web'])->group(function()
+/**************************************************************
+                       Admin Dashboard
+**************************************************************/
+Route::prefix('admin')
+->middleware(['web', 'admin'])
+->group(function()
 {
-    /**************************** Dashboard ***************************/
-    Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 });
 
-Route::prefix('admin')->middleware(['web'])->group(function()
+/**************************************************************
+                       Admin Login/Register
+**************************************************************/
+Route::prefix('admin')
+->middleware(['web'])
+->group(function()
 {
-    /*************************** Register *************************/
     Route::get('/register', 'AdminController@register')->name('admin.register');
     Route::any('/register/store', 'AdminController@userStore')->name('admin.store');
 
-    /**************************** Login ***************************/
     Route::get('/login', 'AdminController@login')->name('admin.login');
     Route::any('/login/auth', 'AdminController@authenticate')->name('admin.authenticate');
 });
