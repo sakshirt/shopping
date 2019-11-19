@@ -40,24 +40,16 @@ class AdminController extends Controller
         return $result;
     }
 
-    /**
-     * register
-     *
-     * @return view
-     */
+
+    /********************** REGISTER ****************************/
+
     public function register()
     {
         $this->data->title = 'Register';
         return view('admin::register')->with('data', $this->data);
     }
 
-    /**
-     * userStore
-     *
-     * @param  Request $request
-     *
-     * @return Response
-     */
+    /** store the user **/
     public function userStore(Request $request)
     {
         $rules = [
@@ -110,6 +102,7 @@ class AdminController extends Controller
         return view('admin::login')->with('data', $this->data);
     }
 
+    /** validate the user login **/
     public function authenticate(Request $request)
     {
         $rules = [
@@ -152,6 +145,13 @@ class AdminController extends Controller
         $response['status'] = 'failed';
         $response['errors'][] = 'Password is incorrect';
         return response()->json($response);
+    }
+
+    /************************* FORGOT PASSWORD ***************************/
+    public function forgotPassword()
+    {
+        $this->data->title = 'Forgot Password';
+        return view('admin::forgot-password')->with('data', $this->data);
     }
 
     /**

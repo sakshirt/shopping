@@ -33,5 +33,9 @@ Route::prefix('admin')
 
     Route::get('/login', 'AdminController@login')->name('admin.login');
     Route::any('/login/auth', 'AdminController@authenticate')->name('admin.authenticate');
+
+
+    Route::get('/forgot/password', 'AdminController@forgotPassword')->name('admin.forgot.password');
+//    Route::any('/forgot/password/email', 'AdminController@')->name('admin.authenticate');
 });
 
