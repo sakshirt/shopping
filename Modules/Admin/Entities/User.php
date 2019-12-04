@@ -85,4 +85,12 @@ class User extends Authenticatable
         $response['messages'][] = 'User logged in successfully';
         return $response;
     }
+
+    //--------------------------------------
+    //-------- Get Name by email -----------
+    //--------------------------------------
+    public static function getNameByEmail($email){
+        $user = User::where('email', $email)->first();
+        return $user->name;
+    }
 }

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-    <div class="container">
+    <div id="app" class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -24,11 +24,11 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input  v-model="user.email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        <button v-on:click="forgotPassword($event)" class="btn btn-primary btn-user btn-block">
                                             Reset Password
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">

@@ -29,7 +29,8 @@ const app = new Extendable({
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/forgot/password/email";
+            var url = this.url.current+"/email";
+            console.log(url);
 
             var params = this.user;
             //url, parameters, callback method

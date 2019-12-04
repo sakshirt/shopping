@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use \Modules\Admin\Entities\User;
 use \Modules\Admin\Entities\Role;
+use \Modules\Admin\Emails\SendForgotPasswordEmail;
 
 class AdminController extends Controller
 {
@@ -19,12 +20,29 @@ class AdminController extends Controller
     }
 
     /**
-     * getErrors
-     *
-     * @param  array $errors
-     *
-     * @return array
+     * Email Content: Returns a string of the email contents
+     * $email: "to" email address; $type: email functionality type (eg. forgot password)
      */
+
+    public function emails($email, $type)
+    {
+        $email = ['forgot' => ['body' => '<p>Hi '.User::getNameByEmail($email).',
+
+                    We received a request to reset your Divine Impex password.
+                   
+                    You can directly change your password by clicking on the button below
+                    <button href="password.reset">Reset Link</button>
+                    
+                    </p>   ',
+            'from' => 'info@divineimpex.com',
+            'subject' => 'Reset your password - Divine Impex',
+            'name' => 'Ravindra Singh']];
+
+        return $email[$type];
+    }
+
+    /************************** ERRORS *************************/
+
     public function getErrors(array $errors) : array
     {
         $result = array();
@@ -152,6 +170,13 @@ class AdminController extends Controller
     {
         $this->data->title = 'Forgot Password';
         return view('admin::forgot-password')->with('data', $this->data);
+    }
+
+    public function sendForgotPasswordEmail(Request $request)
+    {
+//        \Mail::to($request->email)->send(new SendForgotPasswordEmail(
+//            $this->emails($request->email, 'forgot')));
+
     }
 
     /**
