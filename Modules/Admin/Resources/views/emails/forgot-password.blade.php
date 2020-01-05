@@ -5,7 +5,14 @@
 </head>
 <body>
 <h2></h2>
-<p>{!! $body !!}</p>
+<p>Hi {{ $data->name }},</p>
+<p>
+    We received a request to reset your Divine Impex password.
+    You can directly change your password by clicking on the button below.
+</p>
 
+<p>
+    <a href="{{ route('admin.reset.password', [$data->token]) }}"></a>
+</p>
 </body>
 </html>

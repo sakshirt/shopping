@@ -30,7 +30,7 @@ var Extendable = Vue.extend({
                         callback(response.data.data)
                     } else
                     {
-                        console.log(response);
+                        // console.log(response);
                         this.errors(response.data.errors);
                         if(nprogress)
                         {

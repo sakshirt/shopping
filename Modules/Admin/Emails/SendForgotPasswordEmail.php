@@ -20,11 +20,7 @@ class SendForgotPasswordEmail extends Mailable
     public function build()
     {
         return $this->view('admin::emails.forgot-password')
-                    ->from($this->data['from'], $this->data['name'])
-//                    ->cc()
-//                    ->bcc()
-//                    ->replyTo()
-                    ->subject($this->data['subject'])
-                    ->with(['body' => $this->data['body']]);
+                    ->subject($this->data->subject)
+                    ->with(['data' => $this->data]);
     }
 }

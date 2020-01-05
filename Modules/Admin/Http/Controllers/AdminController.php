@@ -19,28 +19,6 @@ class AdminController extends Controller
         $this->data = new \stdClass();
     }
 
-    /**
-     * Email Content: Returns a string of the email contents
-     * $email: "to" email address; $type: email functionality type (eg. forgot password)
-     */
-
-    public function emails($email, $type)
-    {
-        $email = ['forgot' => ['body' => '<p>Hi '.User::getNameByEmail($email).',
-
-                    We received a request to reset your Divine Impex password.
-                   
-                    You can directly change your password by clicking on the button below
-                    <button href="password.reset">Reset Link</button>
-                    
-                    </p>   ',
-            'from' => 'info@divineimpex.com',
-            'subject' => 'Reset your password - Divine Impex',
-            'name' => 'Ravindra Singh']];
-
-        return $email[$type];
-    }
-
     /************************** ERRORS *************************/
 
     public function getErrors(array $errors) : array
@@ -174,9 +152,30 @@ class AdminController extends Controller
 
     public function sendForgotPasswordEmail(Request $request)
     {
-//        \Mail::to($request->email)->send(new SendForgotPasswordEmail(
-//            $this->emails($request->email, 'forgot')));
+        $user = User::where('email', $request->email)->first();
 
+        if (!$user) {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'Invalid Email Address';
+            return response()->json($response);
+        }
+
+        $data = new \stdClass();
+        $data->name = $user->name;
+        $data->subject = "Reset your password - Divine Impex";
+        $data->token = $user->activation_code;
+
+       try {
+        \Mail::to($request->email)
+        ->send(new SendForgotPasswordEmail($data));
+       } catch (\Exception $e) {
+        $response['status'] = 'failed';
+        $response['errors'][] = $e->getMessage();
+        return response()->json($response);
+       }
+        $response['status'] = 'success';
+        $response['messages'][] = 'Email has been sent to your Email address.';
+        return response()->json($response);
     }
 
     /**
