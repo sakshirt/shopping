@@ -89,8 +89,27 @@ class User extends Authenticatable
     //--------------------------------------
     //-------- Get Name by email -----------
     //--------------------------------------
-    public static function getNameByEmail($email){
+    public static function getNameByEmail($email)
+    {
         $user = User::where('email', $email)->first();
         return $user->name;
+    }
+
+    /**
+     * User has Role
+     *
+     * @param  string  $role
+     *
+     * @return bool
+     */
+    public function hasRole(string $slug): bool
+    {
+        $roles =  $this->roles()->get();
+        foreach($roles as $role) {
+            if ($role['slug'] == $slug) {
+                return true;
+            }
+        }
+        return false;
     }
 }

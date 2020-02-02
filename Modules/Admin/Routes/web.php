@@ -19,6 +19,9 @@ Route::prefix('admin')
 ->group(function()
 {
     Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+    Route::post('/productSave', 'DashboardController@saveProduct')->name('admin.product.save');
+    Route::any('/list', 'DashboardController@getProductList')->name('admin.product.list');
+    Route::any('/upload', 'DashboardController@uploadFile')->name('admin.image.upload');
 });
 
 /**************************************************************
