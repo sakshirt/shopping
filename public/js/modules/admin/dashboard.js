@@ -16,12 +16,15 @@ const app = new Extendable({
         // user data
         product : {},
         file: {},
+        search: "",
+        isUpdloadingNew : false,
         image_name : ""
     },
     //----------------------------------------------
     mounted : function(){
         this.url.current = window.location.href;
         this.listLoader(false);
+        $('form').submit(false);
     },
     //----------------------------------------------
     methods : {
@@ -32,7 +35,9 @@ const app = new Extendable({
             }
             var url = this.url.current+"/list";
 
-            var params = {};
+            var params = {
+                search : this.search
+            };
             //url, parameters, callback method
             this.processApiRequest(url, params, this.listLoaderAfter);
         },
@@ -60,8 +65,10 @@ const app = new Extendable({
 
         openPopup : function(product = {}){
             this.product = product;
+            this.isUpdloadingNew = false;
             $("#add-product").modal("show");
         },
+
 
         //---------------------------------------------------------------------
         uploadFile : function (event) {
@@ -95,6 +102,12 @@ const app = new Extendable({
         uploadAfter : function (data) {
             this.product.image_url = data;
             NProgress.done();
+        },
+
+        //--------------------------------------------------------------------
+
+        removeImgAtt: function(item) {
+            this.isUpdloadingNew = true;
         },
     },
     //----------------------------------------------

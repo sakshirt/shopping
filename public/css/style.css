@@ -1,0 +1,20 @@
+.product-description{
+    text-align: center;
+}
+
+.note {
+    text-align: center;
+    font-weight: 500;
+}
+
+.popup-img {
+    text-align: center;
+}
+
+.edit-btn {
+    float: right;
+}
+
+.popup-image {
+    width: 100%;
+}

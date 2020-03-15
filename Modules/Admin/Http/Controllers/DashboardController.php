@@ -91,7 +91,7 @@ class DashboardController extends Controller
     public function getProductList(Request $request)
     {
         $response['status'] = 'success';
-        $response['data'] = Product::getList();
+        $response['data'] = Product::getList($request->search);
         return response()->json($response);
     }
 

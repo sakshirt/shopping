@@ -25,7 +25,10 @@ class Product extends Model
 
 
      public function getProductImgAttribute() {
-         return \URL::to("/").$this->image_url;
+         if ($this->image_url) {
+            return \URL::to("/").$this->image_url;
+         }
+         return null;
      }
 
      public static function saveProduct($data)
@@ -37,8 +40,11 @@ class Product extends Model
          return $product->id;
      }
 
-     public static function getList()
+     public static function getList($search)
      {
+         if (!empty($search)) {
+             return Product::where('name', 'like', "%$search%")->get();
+         }
          return Product::all();
      }
 }

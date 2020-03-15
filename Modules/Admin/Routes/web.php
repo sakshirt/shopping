@@ -45,3 +45,14 @@ Route::prefix('admin')
     // Route::get('/forgot/password/reset/{token}', 'AdminController@resetPassword')->name('');
 });
 
+
+/**************************************************************
+                       Admin Login/Register
+**************************************************************/
+Route::prefix('/')
+->middleware(['web'])
+->group(function()
+{
+    Route::get('/', 'FrontendController@index')->name('frontend.index');
+    Route::any('/list', 'FrontendController@getProductList')->name('frontend.list');
+});
