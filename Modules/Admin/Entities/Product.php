@@ -19,16 +19,25 @@ class Product extends Model
          'special_price'
      ];
 
-     public function saveProduct($data)
+     protected $appends = [
+         'product_img'
+     ];
+
+
+     public function getProductImgAttribute() {
+         return \URL::to("/").$this->image_url;
+     }
+
+     public static function saveProduct($data)
      {
-         $product = $data->id?Product::where('id', $data->id)->first():new Product();
+         $product = !empty($data['id'])?Product::where('id', $data['id'])->first():new Product();
          $product->fill($data);
-         $product->slug = str_slug($data->name);
+         $product->slug = str_slug($data['name']);
          $product->save();
          return $product->id;
      }
 
-     public function grtList()
+     public static function getList()
      {
          return Product::all();
      }

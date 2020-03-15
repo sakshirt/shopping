@@ -40,7 +40,7 @@ Route::prefix('admin')
 
     Route::get('/forgot/password', 'AdminController@forgotPassword')->name('admin.forgot.password');
     Route::post('/forgot/password/email', 'AdminController@sendForgotPasswordEmail')->name('admin.forgot.password.email');
-    Route::post('/forgot/password/reset/{token}', 'AdminController@resetPasswordForm')
+    Route::any('/forgot/password/reset/{id}/{token}', 'AdminController@resetPasswordForm')
                 ->name('admin.reset.password');
     // Route::get('/forgot/password/reset/{token}', 'AdminController@resetPassword')->name('');
 });

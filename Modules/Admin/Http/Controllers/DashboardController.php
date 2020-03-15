@@ -63,12 +63,12 @@ class DashboardController extends Controller
     public function saveProduct(Request $request)
     {
         $rules = [
-            'name' => 'name|required',
+            'name' => 'required',
             'price' => 'required|numeric',
             'image_url' => 'required',
         ];
         $messages = [
-            'price.numeric'      => 'Product price should be in digits',
+            'price.numeric' => 'Product price should be in digits',
         ];
         $validator = \Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -79,7 +79,7 @@ class DashboardController extends Controller
         }
         Product::saveProduct($request->all());
         $response['status'] = 'success';
-        $response['messages'][] = 'User Stored Successfully';
+        $response['messages'][] = 'Product Stored Successfully';
         return response()->json($response);
     }
 
@@ -91,7 +91,7 @@ class DashboardController extends Controller
     public function getProductList(Request $request)
     {
         $response['status'] = 'success';
-        $response['data'] = Product::grtList();
+        $response['data'] = Product::getList();
         return response()->json($response);
     }
 

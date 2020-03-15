@@ -150,6 +150,12 @@ class AdminController extends Controller
         return view('admin::forgot-password')->with('data', $this->data);
     }
 
+    public function setToken(Request $request)
+{
+        $request->activation_code = md5(uniqid(mt_rand(), true));
+        $registerResponse = User::storeActivationCode($request);
+    }
+
     public function sendForgotPasswordEmail(Request $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -161,8 +167,12 @@ class AdminController extends Controller
         }
 
         $data = new \stdClass();
-        $data->name = $user->name;
+        $data->name = $user->first_name;
+        print_r($user);
+        die;
+        $data->email = $user->id;
         $data->subject = "Reset your password - Divine Impex";
+        $this->setToken($request);
         $data->token = $user->activation_code;
 
        try {
@@ -177,6 +187,37 @@ class AdminController extends Controller
         $response['messages'][] = 'Email has been sent to your Email address.';
         return response()->json($response);
     }
+
+    /********************** RESET PASSWORD FORM ************************/
+    public function checkActivationCode(Request $request)
+    {
+        echo 'hello';                                   
+        print_r($request->id);
+        die;
+
+        $user = User::where('email', $request->email)->first();
+        if(url()->current() != $user->activation_code)
+        {
+            $response['status'] = 'failed';
+            $response['errors'][] = 'The activation code has expired';
+            return response()->json($response);
+        }
+        $response['status'] = 'success';
+        $response['messages'][] = 'Action Code matched';
+        return response()->json($response);
+    }
+
+    public function resetPasswordForm(Request $request)
+    {
+        echo 'hello';
+        print_r($request->email);
+        echo $request->email;
+        die;
+        $this->checkActivationCode($request);
+        $this->data->title = 'Reset Password';
+        return view('admin::reset-password-form')->with('data', $this->data);
+    }
+
 
     /**
      * Display a listing of the resource.

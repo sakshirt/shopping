@@ -8,11 +8,11 @@
     <script src="{{ getPublicFiles('js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ getPublicFiles('vendor/chart.js/Chart.min.js') }}"></script>
+    <!-- <script src="{{ getPublicFiles('vendor/chart.js/Chart.min.js') }}"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="{{ getPublicFiles('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ getPublicFiles('js/demo/chart-pie-demo.js') }}"></script>
+    <!-- <script src="{{ getPublicFiles('js/demo/chart-area-demo.js') }}"></script> -->
+    <!-- <script src="{{ getPublicFiles('js/demo/chart-pie-demo.js') }}"></script> -->
     <script src="{{ getPublicFiles('js/modules/admin/dashboard.js') }}"></script>
 @endsection
 @section('content')
@@ -46,24 +46,24 @@
 
                     <!-- Content Row -->
                     <div class="row">
-
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6 mb-4" v-for="item in list">
 
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">@{{ item.name }}</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{ getPublicFiles('img/undraw_posting_photo.svg') }}" alt="">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" :src="item.product_img" alt="">
                                     </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                                    <p>@{{ item.description }}</p>
+                                    <!-- <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a> -->
                                 </div>
                             </div>
 
                         </div>
+                        
                     </div>
 
                 </div>
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="form-group">
-                        <input type="text" class="form-control" id="price" placeholder="Product Price" v-model="product.price">
+                        <input type="number" class="form-control" id="price" placeholder="Product Price" v-model="product.price">
                         </div>
 
                         <div class="form-group">

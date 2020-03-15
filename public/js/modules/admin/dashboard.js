@@ -20,7 +20,8 @@ const app = new Extendable({
     },
     //----------------------------------------------
     mounted : function(){
-        this.url.current = window.location.href
+        this.url.current = window.location.href;
+        this.listLoader(false);
     },
     //----------------------------------------------
     methods : {
@@ -29,7 +30,7 @@ const app = new Extendable({
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/products";
+            var url = this.url.current+"/list";
 
             var params = {};
             //url, parameters, callback method
@@ -38,7 +39,7 @@ const app = new Extendable({
 
         listLoaderAfter : function(data){
             this.stopProgressBar();
-            this.list = data.list;
+            this.list = data;
         },
 
         saveProduct : function(event){
@@ -48,13 +49,13 @@ const app = new Extendable({
             var url = this.url.current+"/productSave";
 
             var params = this.product;
-            //url, parameters, callback method
+            /* url, parameters, callback method */
             this.processApiRequest(url, params, this.saveProductAfter);
         },
 
         saveProductAfter : function(data){
             this.listLoader();
-            $("add-product").modal("hide");
+            $("#add-product").modal("hide");
         },
 
         openPopup : function(product = {}){

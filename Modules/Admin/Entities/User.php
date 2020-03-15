@@ -62,6 +62,21 @@ class User extends Authenticatable
         return $response;
     }
     //--------------------------------------
+    //---- Store Activation Code -----------
+    //--------------------------------------
+    public static function storeActivationCode(Request $request){
+        $user = User::where('email', $request->email)->first();
+        $response = [];
+
+        $user->activation_code = $request->activation_code;
+        $user->save();
+
+        $response['status'] = 'success';
+        $response['data'] = $user;
+        $response['messages'][] = 'User activation code activated';
+        return $response;
+    }
+    //--------------------------------------
     //------------ Authenticate ------------
     //--------------------------------------
     public static function authenticate(Request $request){
