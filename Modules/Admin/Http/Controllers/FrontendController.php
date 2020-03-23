@@ -35,23 +35,24 @@ class FrontendController extends Controller
 
     /********************** DASHBOARD **************************/
 
-    /**
-     * index
-     *
-     * @return void
-     */
-    public function index()
+    public function home()
     {
         $this->data->title = 'Dashboard';
 
-        return view('admin::frontend')->with('data', $this->data);
+        return view('admin::frontend.home')->with('data', $this->data);
     }
 
-    /**
-     * get products from storage.
-     * @param Request $request
-     * @return Response
-     */
+    /********************** SHOP **************************/
+
+    public function shop()
+    {
+        $this->data->title = "Shop";
+
+        return view('admin::frontend.shop')->with('data', $this->data);
+    }
+
+    /******* GET LIST ******/
+    
     public function getProductList(Request $request)
     {
         $response['status'] = 'success';

@@ -47,12 +47,13 @@ Route::prefix('admin')
 
 
 /**************************************************************
-                       Admin Login/Register
+                       Frontend
 **************************************************************/
 Route::prefix('/')
 ->middleware(['web'])
 ->group(function()
 {
-    Route::get('/', 'FrontendController@index')->name('frontend.index');
+    Route::get('/', 'FrontendController@home')->name('frontend.home');
+    Route::get('/shop', 'FrontendController@shop')->name('frontend.shop');
     Route::any('/list', 'FrontendController@getProductList')->name('frontend.list');
 });
