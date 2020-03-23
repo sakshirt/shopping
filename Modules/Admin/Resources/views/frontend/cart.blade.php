@@ -1,0 +1,107 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-lg-6 mb-4" v-for="item in list">
+
+        <!-- Illustrations -->
+        <div class="card shadow mb-4" v-if="item">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h6 class="m-0 font-weight-bold text-primary">@{{ item.name }}</h6>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="edit-btn d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" v-on:click="openPopup(item)">Edit</button>
+                    </div>
+                </div> 
+            </div>
+    
+            <div class="card-body">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" :src="item.product_img" alt="">
+                </div>
+                <p class="product-description"> @{{item.description }}</p>
+                <!-- <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a> -->
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+</div>
+<!-- /.container-fluid -->
+
+
+
+<!-- Product Modal-->
+<div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <span v-if="product.id">Edit Product</span>
+                            <span v-else>Add Product</span>
+                        </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder="Product Name" v-model="product.name">
+                        </div>
+
+                        <div class="form-group">
+                        <input type="number" class="form-control" id="price" placeholder="Product Price" v-model="product.price">
+                        </div>
+
+                        <div class="form-group">
+                        <textarea class="form-control" id="description" placeholder="Description" v-model="product.description"></textarea>
+                        </div>
+
+                        <div class="form-group" v-if="product.product_img && !isUpdloadingNew">
+                            <img  class="popup-image" :src="product.product_img" v-on:click="removeImgAtt(product)"/>
+                            <p class="note"><small>Click on image to upload a new image</small></p>
+                        </div>
+
+                        <div class="form-group" v-else>
+                            <input type="file" class="form-control" id="file" v-on:change="handleImage($event)">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="button" v-on:click="saveProduct()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
