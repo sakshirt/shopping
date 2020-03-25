@@ -85,7 +85,7 @@
             </div>
             <!-- End of Main Content -->
 
-            @include('admin::common.footer')
+            @include('admin::layouts.footer')
 
         </div>
         <!-- End of Content Wrapper -->

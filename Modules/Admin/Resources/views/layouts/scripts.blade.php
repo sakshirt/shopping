@@ -11,7 +11,7 @@
 <!-- Vue JS-->
 <script src="{{ getPublicFiles('js/common/vue.min.js') }}"></script>
 
-<!-- Vue resources JS-->
+<!-- Vue resources JS--> 
 <script src="{{ getPublicFiles('js/common/vue-resource.min.js') }}"></script>
 
 <!-- Vue pagination JS-->
