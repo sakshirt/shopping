@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@if(!empty($data->title)){{ 'Demo' }}@else {{ $data->title }}@endif</title>
-
+  <link rel="icon" href="{{ getPublicFiles('img/icon.png')}}" type="image/gif" sizes="16x16">
   <link href="{{ getPublicFiles('frontend/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
   <link rel="stylesheet" href="{{ getPublicFiles('frontend/css/shop.css')}}" type="text/css" media="screen" property="" />
     

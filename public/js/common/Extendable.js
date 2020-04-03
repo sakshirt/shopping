@@ -30,7 +30,6 @@ var Extendable = Vue.extend({
                         callback(response.data.data)
                     } else
                     {
-                        // console.log(response);
                         this.errors(response.data.errors);
                         if(nprogress)
                         {
@@ -42,18 +41,27 @@ var Extendable = Vue.extend({
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
         warnings: function (warnings) {
+            if (!Array.isArray(warnings) || warnings.length <= 0) {
+                return false;
+            }
             $.each(warnings, function (index, object) {
                 alertify.error(object);
             });
         },
         //---------------------------------------------------------------------
         errors: function (errors) {
+            if (!Array.isArray(errors) || errors.length <= 0) {
+                return false;
+            }
             $.each(errors, function (index, object) {
                 alertify.error(object);
             });
         },
         //---------------------------------------------------------------------
         messages: function (messages) {
+            if (!Array.isArray(messages) || messages.length <= 0) {
+                return false;
+            }
             $.each(messages, function (index, object) {
                 alertify.success(object);
             });

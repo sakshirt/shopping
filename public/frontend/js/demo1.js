@@ -1,6 +1,6 @@
 (function() {
 	var container = document.querySelector( 'div.container' ),
-		triggerBttn = document.getElementById( 'trigger-overlay' ),
+		// triggerBttn = document.getElementById( 'trigger-overlay' ),
 		overlay = document.querySelector( 'div.overlay' ),
 		closeBttn = overlay.querySelector( 'button.overlay-close' );
 		transEndEventNames = {
@@ -38,6 +38,6 @@
 		}
 	}
 
-	triggerBttn.addEventListener( 'click', toggleOverlay );
+	// triggerBttn.addEventListener( 'click', toggleOverlay );
 	closeBttn.addEventListener( 'click', toggleOverlay );
 })();
