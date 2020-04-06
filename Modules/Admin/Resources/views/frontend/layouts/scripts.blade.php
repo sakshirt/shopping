@@ -1,4 +1,30 @@
-    <script type="text/javascript" src="{{ getPublicFiles('frontend/js/jquery-2.1.4.min.js')}}"></script>
+    
+	
+<!-- Bootstrap core JavaScript-->
+<script src="{{ getPublicFiles('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ getPublicFiles('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ getPublicFiles('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Vue JS-->
+<script src="{{ getPublicFiles('js/common/vue.min.js') }}"></script>
+
+<!-- Vue resources JS--> 
+<script src="{{ getPublicFiles('js/common/vue-resource.min.js') }}"></script>
+
+<!-- Vue pagination JS-->
+<script src="{{ getPublicFiles('js/common/VuePagination.js') }}"></script>
+
+<!-- alertify -->
+<script src="{{ getPublicFiles('js/common/alertify.min.js') }}"></script>
+
+<!-- NProgress -->
+<script src="{{ getPublicFiles('js/common/nprogress.min.js') }}"></script>
+
+<script src="{{ getPublicFiles('js/common/Extendable.js') }}"></script>
+
+<script type="text/javascript" src="{{ getPublicFiles('frontend/js/jquery-2.1.4.min.js')}}"></script>
 	<!-- //js -->
 	<!-- /nav -->
 	<script src="{{ getPublicFiles('frontend/js/modernizr-2.6.2.min.js')}}"></script>
@@ -19,7 +45,7 @@
 				for (i = 0, len = items.length; i < len; i++) {}
 			}
 		});
-	</script>
+	</script> 
 	<!-- //cart-js -->
 	<!--search-bar-->
 	<script src="{{ getPublicFiles('frontend/js/search.js')}}"></script>
@@ -51,17 +77,4 @@
             }
 	</script>
 	
-	<!-- Vue JS-->
-<script src="{{ getPublicFiles('js/common/vue.min.js') }}"></script>
-
-<!-- Vue resources JS--> 
-<script src="{{ getPublicFiles('js/common/vue-resource.min.js') }}"></script>
-
-<!-- Vue pagination JS-->
-<script src="{{ getPublicFiles('js/common/VuePagination.js') }}"></script>
-
-<!-- NProgress -->
-<script src="{{ getPublicFiles('js/common/nprogress.min.js') }}"></script>
-<script src="{{ getPublicFiles('js/common/Extendable.js') }}"></script>
-
 @yield('page_specific_scripts')

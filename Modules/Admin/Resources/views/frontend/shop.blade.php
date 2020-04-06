@@ -48,7 +48,7 @@
 						<div class="ads-grid_shop">
 							<div class="shop_inner_inf">
 								<!-- tittle heading -->
-								<div class="left-ads-display col-md-12" v-for="item in list">
+								<div class="left-ads-display col-md-12">
 								<div class="wrapper_top_shop">
 									<!-- <div class="col-md-6 shop_left">
 										<img src="{{ getPublicFiles('frontend/images/banner3.jpg')}}" alt="">
@@ -62,9 +62,9 @@
 									<!-- product-sec1 -->
 									<div class="product-sec1">
 										<!--/mens-->
-										<div class="col-md-4 product-men" v-if="item">
+										<div class="col-md-4 product-men" v-for="item in list">
 											<div class="product-shoe-info shoe">
-												<div class="men-pro-item">
+												<div class="men-pro-item" v-if="item">
 													<div class="men-thumb-item">
 														<img :src="item.product_img" alt="">
 														<div class="men-cart-pro">
@@ -78,7 +78,7 @@
 														<h4>
 															<a href="single.html">@{{ item.name }} </a>
 														</h4>
-														<div class="info-product-price">
+														<!-- <div class="info-product-price">
 															<div class="grid_meta">
 																<div class="product_price">
 																	<div class="grid-price ">
@@ -105,7 +105,7 @@
 																</form>
 
 															</div>
-														</div>
+														</div> -->
 														<div class="clearfix"></div>
 													</div>
 												</div>

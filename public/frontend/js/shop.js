@@ -32,6 +32,7 @@ const app = new Extendable({
                 event.preventDefault();
             }
             var url = this.url.current+"/list";
+            console.log(url);
 
             var params = {
                 search : this.search

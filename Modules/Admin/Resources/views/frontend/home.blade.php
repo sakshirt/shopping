@@ -1,6 +1,7 @@
 @extends('admin::frontend.layouts.master')
 
 @section('page_specific_scripts')
+
 	<script src="{{ getPublicFiles('frontend/js/responsiveslides.min.js')}}"></script>
 	<script>
 		$(function () {
@@ -22,9 +23,6 @@
 	<!-- js for portfolio lightbox -->
 	
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ getPublicFiles('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
 @endsection
 @section('content')
 
@@ -37,7 +35,7 @@
             <!-- Main Content -->
             <div id="content">    
                 
-            @include('admin::frontend.common.topbar')
+            @include('admin::frontend.common.hometopbar')
     
                 <!-- /girds_bottom-->
                 <div class="grids_bottom">
@@ -72,7 +70,7 @@
 
         </div>
         <!-- End of Content Wrapper -->
-        
+
 
     </div>
     <!-- End of Page Wrapper -->
