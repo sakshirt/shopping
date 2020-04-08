@@ -4,7 +4,7 @@
 			<div class="col-md-6 footer-left">
 				<div class="sign-grds">
 					<div class="col-md-12 sign-gd">
-						<h2><a href="index.html"><span>D</span>ivine Impex </a></h2>
+						<h2><a href="{{ url('/') }}"><span>D</span>ivine Impex </a></h2>
 						<p>As a fashion jewelry manufacturer and exporters, DIVINE IMPEX is your reliable expert when it comes to multi faceted jewelry for every season and need. </p>
 						<p>Be inspired by the extensive range in our collection..!</p>
 						<ul class="social-nav model-3d-0 footer-social social two">
@@ -41,8 +41,8 @@
 					<div class="col-md-6 sign-gd">
 						<h4>Our <span>Information</span> </h4>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="shop.html">Shop</a></li>
+							<li><a href="{{ url('/') }}">Home</a></li>
+							<li><a href="{{ url('/shop') }}">Shop</a></li>
 							<!-- <li><a href="about.html">About</a></li>
 							<li><a href="404.html">Services</a></li>
 							<li><a href="404.html">Short Codes</a></li>
