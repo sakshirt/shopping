@@ -43,8 +43,8 @@
 						<ul>
 							<li><a href="{{ url('/') }}">Home</a></li>
 							<li><a href="{{ url('/shop') }}">Shop</a></li>
-							<!-- <li><a href="about.html">About</a></li>
-							<li><a href="404.html">Services</a></li>
+							<li><a href="{{ url('/about') }}">About Us</a></li>
+							<!-- <li><a href="404.html">Services</a></li>
 							<li><a href="404.html">Short Codes</a></li>
 							<li><a href="contact.html">Contact</a></li> -->
 						</ul>

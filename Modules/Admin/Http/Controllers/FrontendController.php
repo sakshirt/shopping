@@ -51,6 +51,15 @@ class FrontendController extends Controller
         return view('admin::frontend.shop')->with('data', $this->data);
     }
 
+    /********************** SHOP **************************/
+
+    public function aboutUs()
+    {
+        $this->data->title = "About Us";
+
+        return view('admin::frontend.about-us')->with('data', $this->data);
+    }
+
     /******* GET LIST ******/
     
     public function getProductList(Request $request)

@@ -17,11 +17,11 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="mobile-nav-button">
+				<!-- <div class="mobile-nav-button">
 					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
-				</div>
+				</div> -->
 				<!-- cart details -->
-				<div class="top_nav_right">
+				<!-- <div class="top_nav_right">
 					<div class="shoecart shoecart2 cart cart box_1">
 						<form action="#" method="post" class="last">
 							<input type="hidden" name="cmd" value="_cart">
@@ -29,7 +29,7 @@
 							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 						</form>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- //cart details -->
@@ -53,7 +53,7 @@
 			<div class="inner_breadcrumb_agileits_w3">
 
 				<ul class="short">
-					<li><a href="index.html">Home</a><i>|</i></li>
+					<li><a href="{{ url('/') }}">Home</a><i>|</i></li>
 					<li>Shop</li>
 				</ul>
 			</div>
