@@ -42,7 +42,8 @@
 			</div>
 			<div id="cd-search" class="cd-search">
 				<form action="#" method="post">
-					<input name="Search" type="search" placeholder="Click enter after typing...">
+					<input name="Search" type="search" v-model="search" v-on:change="listLoader(event)"
+					placeholder="Click enter after typing...">
 				</form>
 			</div>
 		</div>
