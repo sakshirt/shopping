@@ -62,7 +62,7 @@
 									<!-- product-sec1 -->
 									<div class="product-sec1">
 										<!--/mens-->
-										<div class="col-md-4 product-men" v-for="item in list">
+										<div class="col-md-3 product-men" v-for="item in list">
 											<div class="product-shoe-info shoe">
 												<div class="men-pro-item" v-if="item">
 													<div class="men-thumb-item">
@@ -78,11 +78,14 @@
 														<h4>
 															<a href="single.html">@{{ item.name }} </a>
 														</h4>
+														<div class="grid-price ">
+															<span class="money ">@{{ item.price }}</span>
+														</div>
 														<!-- <div class="info-product-price">
 															<div class="grid_meta">
 																<div class="product_price">
 																	<div class="grid-price ">
-																		<span class="money ">$675.00</span>
+																		<span class="money ">@{{ item.price }}</span>
 																	</div>
 																</div>
 																<ul class="stars">
@@ -179,7 +182,3 @@
                     </div>
 
                 </div> -->
-
-
-
-
