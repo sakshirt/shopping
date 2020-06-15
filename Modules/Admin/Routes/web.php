@@ -58,6 +58,8 @@ Route::prefix('/')
     Route::any('/shop/list', 'FrontendController@getProductList')->name('frontend.list');
     Route::get('/about', 'FrontendController@aboutUs')->name('frontend.about');
 
+    Route::get('/shop/product/{id}', 'FrontendController@productDetail')->name('frontend.product');
+    Route::any('/shop/product/{id}/details', 'FrontendController@getProductDetails')->name('frontend.product.details');
     // Route::any('/shop/list', function(){
     //     echo 'hey';
     // });

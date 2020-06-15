@@ -47,4 +47,12 @@ class Product extends Model
          }
          return Product::all();
      }
+
+     public static function getProductDetails($search)
+     {
+         if (!empty($search)) {
+             return Product::where('id', 'like', "%$search%")->get();
+         }
+         return Product::all();
+     }
 }

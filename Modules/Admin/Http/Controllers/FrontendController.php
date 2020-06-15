@@ -51,7 +51,7 @@ class FrontendController extends Controller
         return view('admin::frontend.shop')->with('data', $this->data);
     }
 
-    /********************** SHOP **************************/
+    /********************** ABOUT US **************************/
 
     public function aboutUs()
     {
@@ -67,5 +67,25 @@ class FrontendController extends Controller
         $response['status'] = 'success';
         $response['data'] = Product::getList($request->search);
         return response()->json($response);
+    }
+    
+    /******* GET DETAIL ******/
+    
+    public function getProductDetails(Request $request)
+    {
+        $response['status'] = 'success';
+        
+        $response['data'] = Product::getProductDetails($request->id[6]);
+        return response()->json($response);
+        // $response['data'][0]->id
+    }
+
+    /******* PRODUCT DETAIL ******/
+    
+    public function productDetail(Request $request)
+    {
+        $this->data->title = "Product Detail";
+
+        return view('admin::frontend.product-detail')->with('data', $this->data);
     }
 }

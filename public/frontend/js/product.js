@@ -14,38 +14,43 @@ const app = new Extendable({
         //end pagination
 
         // user data
-        product : {},
+        product : {
+            id : null,
+        },
         file: {},
         search: "",
     },
     //----------------------------------------------
     mounted : function(){
         this.url.current = window.location.href;
-        this.listLoader(false);
-        $('form').submit(false);
+        this.product.id = this.url.current.split('/');
+       
+        this.detailLoader(false);
+        // $('form').submit(false);
     },
     //----------------------------------------------
     methods : {
         //define your methods here
-        listLoader : function(event){
+        detailLoader : function(event){
             if(event){
                 event.preventDefault();
             }
-            var url = this.url.current+"/list";
-            console.log(url);
+            var url = this.url.current+"/details";
+            // console.log(this.product.id);
 
             var params = {
-                search : this.search
+                search : this.search,
+                id: this.product.id
             };
             //url, parameters, callback method
-            this.processApiRequest(url, params, this.listLoaderAfter);
+            this.processApiRequest(url, params, this.detailLoaderAfter);
         },
 
-        listLoaderAfter : function(data){
+        detailLoaderAfter : function(data){
             this.stopProgressBar();
-            this.list = data;
+            this.list = data[0];
         },
 
     },
     //----------------------------------------------
-});
+})
